@@ -1,7 +1,7 @@
 const moment = require('moment')
-const CONFIG = require('./config')
 const fileUtils = require('./utils/file')
 const imageUtils = require('./utils/image')
+require('dotenv').config()
 
 const getImagesList = (bot, msg, match) => {
   let fileData = fileUtils.getFileData()
@@ -32,7 +32,7 @@ const publishImage = (bot, msg, match = []) => {
   if (!isImageExist) {
     let stream = fileUtils.getFileStream(IMAGE_NAME)
 
-    bot.sendPhoto(CONFIG.CHAT_ID, stream)
+    bot.sendPhoto(process.env.CHAT_ID, stream)
 
     if (msg) {
       bot.sendMessage(msg.from.id, `I've added image #${IMAGE_NAME}`)

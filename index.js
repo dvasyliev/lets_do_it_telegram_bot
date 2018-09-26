@@ -1,8 +1,8 @@
 const telegramBot = require('node-telegram-bot-api')
 const commands = require('./commands')
-const CONFIG = require('./config')
+require('dotenv').config()
 
-let bot = new telegramBot(CONFIG.BOT_TOKEN, { polling: true })
+let bot = new telegramBot(process.env.BOT_TOKEN, { polling: true })
 
 bot.onText(/\/test/, (msg, match) => {
   bot.sendMessage(msg.from.id, `Hi, ${msg.from.first_name}! I'm okay!`)
