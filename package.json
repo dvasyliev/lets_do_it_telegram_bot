@@ -1,4 +1,7 @@
 {
+  "name": "lets_do_it_bot",
+  "version": "0.0.1",
+  "description": "bot send motivation images",
   "scripts": {
     "start": "node index.js",
     "publish": "node publish.js"
