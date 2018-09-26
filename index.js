@@ -41,3 +41,9 @@ bot.onText(/\/start/, (msg, match) => {
     }
   }, 1000)
 })
+
+bot.onText(/\/test/, (msg, match) => {
+  if (msg.from.id === parseInt(CONFIG.OWNER_CHAT_ID, 10)) {
+    bot.sendMessage(msg.from.id, `Hi, ${msg.from.first_name}! I'm okay!`)
+  }
+})
