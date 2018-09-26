@@ -14,15 +14,15 @@ const getFileData = () => {
   return JSON.parse(fs.readFileSync(FILE_NAME, 'utf8'))
 }
 
-const getFileStream = () => {
-  return fs.createReadStream(`./assets/images/${DAY_OF_YEAR}.jpg`)
+const getFileStream = (image = DAY_OF_YEAR) => {
+  return fs.createReadStream(`./assets/images/${image}.jpg`)
 }
 
 const writeFile = (data) => {
   fs.writeFileSync(FILE_NAME, JSON.stringify(data))
 }
 
-export {
+module.exports = {
   getFileData,
   getFileStream,
   writeFile

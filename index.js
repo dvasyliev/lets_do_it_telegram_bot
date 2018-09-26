@@ -1,4 +1,3 @@
-const fs = require('fs')
 const telegramBot = require('node-telegram-bot-api')
 const fileUtils = require('./utils/file')
 
@@ -23,8 +22,11 @@ bot.onText(/\/add (\d+)/, (msg, match) => {
     const isImageExist = fileData.images.includes(IMAGE)
 
     if (!isImageExist) {
+      const stream = fileUtils.getFileStream(IMAGE)
+
       fileData.images = fileData.images.push(IMAGE)
       fileUtils.writeFile(fileData)
+      bot.sendPhoto(CONFIG.CHAT_ID, stream)
       bot.sendMessage(msg.from.id, `I've added image #${IMAGE} to array of posted images`)
 
     } else {
