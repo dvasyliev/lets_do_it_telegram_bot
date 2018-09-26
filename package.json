@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "publish_image": "node publish_image.js"
   },
   "dependencies": {
     "moment": "^2.22.2",
