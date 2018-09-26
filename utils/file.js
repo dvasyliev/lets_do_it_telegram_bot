@@ -14,8 +14,8 @@ const getFileData = () => {
   return JSON.parse(fs.readFileSync(FILE_NAME, 'utf8'))
 }
 
-const getFileStream = (image = DAY_OF_YEAR) => {
-  return fs.createReadStream(`./assets/images/${image}.jpg`)
+const getFileStream = (image_name) => {
+  return fs.createReadStream(`./assets/images/${image_name}.jpg`)
 }
 
 const writeFile = (data) => {
