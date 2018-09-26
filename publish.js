@@ -1,7 +1,7 @@
 const telegramBot = require('node-telegram-bot-api')
-const jobs = require('./jobs')
+const commands = require('./commands')
 const CONFIG = require('./config')
 
 let bot = new telegramBot(CONFIG.BOT_TOKEN, { polling: true })
 
-jobs.publishImage(bot)
+commands.publishImage(bot)

@@ -1,5 +1,5 @@
 const telegramBot = require('node-telegram-bot-api')
-const jobs = require('./jobs')
+const commands = require('./commands')
 const CONFIG = require('./config')
 
 let bot = new telegramBot(CONFIG.BOT_TOKEN, { polling: true })
@@ -9,17 +9,17 @@ bot.onText(/\/test/, (msg, match) => {
 })
 
 bot.onText(/\/list/, (msg, match) => {
-  jobs.getImagesList(bot, msg, match)
+  commands.getImagesList(bot, msg, match)
 })
 
 bot.onText(/\/show (\d+)/, (msg, match) => {
-  jobs.showImage(bot, msg, match)
+  commands.showImage(bot, msg, match)
 })
 
 bot.onText(/\/publish (\d+)/, (msg, match) => {
-  jobs.publishImage(bot, msg, match)
+  commands.publishImage(bot, msg, match)
 })
 
 bot.onText(/\/delete (\d+)/, (msg, match) => {
-  jobs.deleteImage(bot, msg, match)
+  commands.deleteImage(bot, msg, match)
 })
