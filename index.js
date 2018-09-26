@@ -55,16 +55,17 @@ bot.onText(/\/test/, (msg, match) => {
 
 bot.onText(/\/delete (\d+)/, (msg, match) => {
   if (_isOwner(msg.from.id)) {
+    const IMAGE = parseInt(match[1], 10)
     const DAY_OF_YEAR = moment().dayOfYear()
-    const isImageExist = fileData.images.includes(match[1])
+    const isImageExist = fileData.images.includes(IMAGE)
 
     if (isImageExist) {
-      fileData.images = fileData.images.filter(image => image !== match[1])
+      fileData.images = fileData.images.filter(image => image !== IMAGE)
       fs.writeFileSync(FILE_NAME, JSON.stringify(fileData))
-      bot.sendMessage(msg.from.id, `I've deleted image #${match[1]} from array of posted images`)
+      bot.sendMessage(msg.from.id, `I've deleted image #${IMAGE} from array of posted images`)
 
     } else {
-      bot.sendMessage(msg.from.id, `Image #${match[1]} doesn't exist in array of posted images`)
+      bot.sendMessage(msg.from.id, `Image #${IMAGE} doesn't exist in array of posted images`)
     }
   }
 })
