@@ -1,8 +1,4 @@
 node_modules/
-dist/
-tmp/
-.tmp/
-tmp_files/
 posts/
 
 npm-debug.log*
@@ -11,16 +7,7 @@ yarn-error.log*
 
 # Editor directories and files
 .env
-# .env.js
 .DS_Store
 .idea
 .vscode
 .history
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-
-*.ai
-*.psd
-*.pdf
