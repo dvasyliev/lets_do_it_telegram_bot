@@ -7,6 +7,10 @@ const FILE_NAME = `./posts/${new Date().getFullYear()}.json`
 
 let bot = new telegramBot(CONFIG.BOT_TOKEN, { polling: true })
 
+const _isOwner = (fromId) => {
+  return fromId === parseInt(CONFIG.OWNER_CHAT_ID, 10)
+}
+
 // create './posts/[current_year].json' file
 // with empty images array, if the file isn't exist
 if (!fs.existsSync(FILE_NAME)) {
@@ -26,7 +30,7 @@ bot.onText(/\/start/, (msg, match) => {
     const DAY_OF_YEAR = moment().dayOfYear()
     const CURRENT_TIME = `${new Date().getHours()}:${new Date().getMinutes()}`
 
-    if (IMAGE_SEND_TIME === CURRENT_TIME || IMAGE_SEND_TIME < CURRENT_TIME) {
+    if (IMAGE_SEND_TIME <= CURRENT_TIME) {
       if (!isImageSent) {
         const stream = fs.createReadStream(`./assets/images/${DAY_OF_YEAR}.jpg`)
 
@@ -44,7 +48,23 @@ bot.onText(/\/start/, (msg, match) => {
 })
 
 bot.onText(/\/test/, (msg, match) => {
-  if (msg.from.id === parseInt(CONFIG.OWNER_CHAT_ID, 10)) {
+  if (_isOwner(msg.from.id)) {
     bot.sendMessage(msg.from.id, `Hi, ${msg.from.first_name}! I'm okay!`)
+  }
+})
+
+bot.onText(/\/delete (\d+)/, (msg, match) => {
+  if (_isOwner(msg.from.id)) {
+    const DAY_OF_YEAR = moment().dayOfYear()
+    const isImageExist = fileData.images.includes(match[1])
+
+    if (isImageExist) {
+      fileData.images = fileData.images.filter(image => image !== match[1])
+      fs.writeFileSync(FILE_NAME, JSON.stringify(fileData))
+      bot.sendMessage(msg.from.id, `I've deleted image #${match[1]} from array of posted images`)
+
+    } else {
+      bot.sendMessage(msg.from.id, `Image #${match[1]} doesn't exist in array of posted images`)
+    }
   }
 })
