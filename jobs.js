@@ -34,7 +34,7 @@ const publishImage = (bot, msg, match = []) => {
     fileUtils.writeFile(fileData)
 
   } else if (msg) {
-    bot.sendMessage(msg.from.id, `Image #${IMAGE} already exist`)
+    bot.sendMessage(msg.from.id, `Image #${IMAGE_NAME} already exist`)
   }
 }
 
@@ -48,13 +48,13 @@ const deleteImage = (bot, msg, match = []) => {
     let isImageExist = fileData.images.includes(IMAGE_NAME)
 
     if (isImageExist) {
-      bot.sendMessage(msg.from.id, `I've deleted image #${IMAGE}`)
+      bot.sendMessage(msg.from.id, `I've deleted image #${IMAGE_NAME}`)
 
-      fileData.images = fileData.images.filter(image => image !== IMAGE)
+      fileData.images = fileData.images.filter(img => img !== IMAGE_NAME)
       fileUtils.writeFile(fileData)
 
     } else {
-      bot.sendMessage(msg.from.id, `Image #${IMAGE} doesn't exist`)
+      bot.sendMessage(msg.from.id, `Image #${IMAGE_NAME} doesn't exist`)
     }
   }
 }
