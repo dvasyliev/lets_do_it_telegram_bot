@@ -12,6 +12,7 @@ yarn-error.log*
 # Editor directories and files
 # .env
 # .env.js
+config.js
 .DS_Store
 .idea
 .vscode
