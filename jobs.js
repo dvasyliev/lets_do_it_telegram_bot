@@ -3,6 +3,14 @@ const CONFIG = require('./config')
 const fileUtils = require('./utils/file')
 const imageUtils = require('./utils/image')
 
+const getImagesList = (bot, msg, match) => {
+  let fileData = fileUtils.getFileData()
+  let images = fileData.images.join(', ')
+  console.log(images)
+
+  bot.sendMessage(msg.from.id, `Images: ${images}`)
+}
+
 const showImage = (bot, msg, match = []) => {
   const IMAGE_ID = match[1]
 
@@ -60,6 +68,7 @@ const deleteImage = (bot, msg, match = []) => {
 }
 
 module.exports = {
+  getImagesList,
   showImage,
   publishImage,
   deleteImage

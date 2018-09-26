@@ -8,11 +8,15 @@ bot.onText(/\/test/, (msg, match) => {
   bot.sendMessage(msg.from.id, `Hi, ${msg.from.first_name}! I'm okay!`)
 })
 
+bot.onText(/\/list/, (msg, match) => {
+  jobs.getImagesList(bot, msg, match)
+})
+
 bot.onText(/\/show (\d+)/, (msg, match) => {
   jobs.showImage(bot, msg, match)
 })
 
-bot.onText(/\/add (\d+)/, (msg, match) => {
+bot.onText(/\/publish (\d+)/, (msg, match) => {
   jobs.publishImage(bot, msg, match)
 })
 
