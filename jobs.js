@@ -6,7 +6,6 @@ const imageUtils = require('./utils/image')
 const getImagesList = (bot, msg, match) => {
   let fileData = fileUtils.getFileData()
   let images = fileData.images.join(', ')
-  console.log(images)
 
   bot.sendMessage(msg.from.id, `Images: ${images}`)
 }
@@ -25,6 +24,7 @@ const showImage = (bot, msg, match = []) => {
 const publishImage = (bot, msg, match = []) => {
   const IMAGE_ID = match[1] || moment().dayOfYear()
   const IMAGE_NAME = imageUtils.getImageName(IMAGE_ID)
+  console.log('It works!')
 
   let fileData = fileUtils.getFileData()
   let isImageExist = fileData.images.includes(IMAGE_NAME)
