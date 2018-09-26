@@ -3,6 +3,7 @@ dist/
 tmp/
 .tmp/
 tmp_files/
+posts/
 
 npm-debug.log*
 yarn-debug.log*
