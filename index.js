@@ -10,6 +10,7 @@ let bot = new telegramBot(CONFIG.BOT_TOKEN, { polling: true })
 // create './posts/[current_year].json' file
 // with empty images array, if the file isn't exist
 if (!fs.existsSync(FILE_NAME)) {
+  fs.mkdirSync('posts')
   fs.appendFileSync(FILE_NAME, JSON.stringify({ images: [] }))
 }
 
