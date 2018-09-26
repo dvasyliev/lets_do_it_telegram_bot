@@ -44,7 +44,7 @@ bot.onText(/\/start/, (msg, match) => {
     } else if (isImageSent) {
       isImageSent = false
     }
-  }, 1000)
+  }, 30000)
 })
 
 bot.onText(/\/test/, (msg, match) => {
